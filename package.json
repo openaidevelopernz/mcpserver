@@ -4,9 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "",
     "start": "node index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "latest"
+    "@modelcontextprotocol/server-websocket": "latest"
   }
 }

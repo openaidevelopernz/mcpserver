@@ -1,10 +1,10 @@
-import { WebSocketRpcServer } from "@modelcontextprotocol/sdk/server";
+import { Server } from "@modelcontextprotocol/sdk/server";
 import fetch from "node-fetch";
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwynq19kaHBPod9mQ4c3PVFoXkZZkaKZZ6LxG990skvqPobOOBQSTcPNE8c9atDiqN6XQ/exec";
 
-const server = new WebSocketRpcServer({
+const server = new Server({
   port: process.env.PORT || 8080,
   name: "email-mcp",
   version: "1.0.0"

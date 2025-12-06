@@ -1,0 +1,6 @@
+{
+  "schema": "1.0",
+  "name": "email-server",
+  "version": "1.0.0",
+  "tools": ["send_email"]
+}

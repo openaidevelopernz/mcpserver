@@ -1,9 +1,9 @@
 {
-  "name": "email-mcp",
+  "name": "mcpserver",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "@modelcontextprotocol/server": "latest",
-    "node-fetch": "3.x"
-  }
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {}
 }

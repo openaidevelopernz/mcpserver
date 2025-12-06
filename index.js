@@ -1,39 +1,42 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import fetch from "node-fetch";
+import express from "express";
+import cors from "cors";
+import { SSEServer } from "@modelcontextprotocol/sdk/server/sse";
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwynq19kaHBPod9mQ4c3PVFoXkZZkaKZZ6LxG990skvqPobOOBQSTcPNE8c9atDiqN6XQ/exec";
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const server = new McpServer({
-  port: process.env.PORT || 8080,
-  name: "email-mcp",
-  version: "1.0.0"
+const sseServer = new SSEServer();
+
+app.get("/sse", (req, res) => {
+  sseServer.handleConnection(req, res);
 });
 
-server.registerTool(
-  "send_email",
-  {
-    description: "Send an email via Google Apps Script",
-    inputSchema: {
-      type: "object",
-      properties: {
-        to: { type: "string" },
-        subject: { type: "string" },
-        body: { type: "string" }
-      },
-      required: ["to", "subject", "body"]
-    }
+sseServer.registerTool({
+  name: "send_email",
+  description: "Send email through Google Apps Script",
+  inputSchema: {
+    type: "object",
+    properties: {
+      to: { type: "string" },
+      subject: { type: "string" },
+      body: { type: "string" }
+    },
+    required: ["to", "subject", "body"]
   },
-  async ({ to, subject, body }) => {
-    const response = await fetch(`${APPS_SCRIPT_URL}?path=invoke/send_email`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ to, subject, body })
-    });
-
-    const data = await response.json();
-    return { result: data };
+  async execute(args) {
+    const response = await fetch(
+      "YOUR_APPS_SCRIPT_URL",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(args)
+      }
+    );
+    return await response.json();
   }
-);
+});
 
-console.log("MCP server running on port", process.env.PORT || 8080);
+app.listen(8000, () => {
+  console.log("MCP server running on port 8000");
+});

@@ -1,0 +1,9 @@
+{
+  "name": "email-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/server": "latest",
+    "node-fetch": "3.x"
+  }
+}

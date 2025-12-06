@@ -10,7 +10,7 @@ const server = new Server({
   version: "1.0.0"
 });
 
-server.tool(
+server.registerTool(
   "send_email",
   {
     description: "Send an email via Google Apps Script",

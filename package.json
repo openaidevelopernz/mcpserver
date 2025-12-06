@@ -4,10 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "",
     "start": "node index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/server-websocket": "latest"
+    "@modelcontextprotocol/server": "^1.0.0",
+    "node-fetch": "^3.3.2"
   }
 }

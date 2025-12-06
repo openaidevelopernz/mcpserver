@@ -36,7 +36,6 @@ server.registerTool(
   }
 );
 
-// 👇 ADD THIS — START THE MCP SERVER
-server.listen().then(() => {
-  console.log("MCP WebSocket server running on port", process.env.PORT || 8080);
-});
+// ✅ Correct method:
+server.start();
+console.log("MCP server running on port", process.env.PORT || 8080);
